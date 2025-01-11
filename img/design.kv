@@ -1,0 +1,309 @@
+<VideoScreen>:
+
+    GridLayout:
+        background_color: 1, 1, 1, 1
+        cols:1
+
+        RelativeLayout:
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": 0.2, "center_y": 0.6}
+            ImageButton:
+                size_hint: 0.7, 0.7
+                pos_hint: {"center_x": 0.2, "center_y": 0.6}
+                source: "logout_hover.png" if self.hovered else "logout_nothover.png"
+                on_press: root.log_out()
+
+        BoxLayout:
+            size_hint: 1, 1
+            Camera:
+                id: cam
+                resolution: (640, 480)
+                play: True
+
+        RelativeLayout:
+            size_hint: 1, 0.25
+
+            ImageButton:
+                on_press: root.take()
+                source: "camera_button.png"
+                pos_hint: {"center_x": 0.5}
+                background_color: 255, 255, 255, 1
+
+        ScrollView:
+            size_hint: 1, 0.2
+
+            BoxLayout:
+                height: self.minimum_height
+                orientation: "horizontal"
+                spacing: 10000, 10
+                padding: 5, 5
+                size_hint_x: None
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+                Button:
+                    background_color: 1, 1, 1, 1
+                    size_hint_x: None
+
+<PhotoScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.2
+            padding: 0, 10
+            spacing: 30, 10
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Cancel"
+                on_press: root.cancel()
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Reset"
+                on_press: root.reset()
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Continue"
+                on_press: root.continu()
+
+        RelativeLayout:
+            size_hint: 1, 1
+            id: holder
+            
+
+        GridLayout:
+            cols: 1
+            size_hint: 1, 0.2
+
+            BoxLayout:
+                height: self.minimum_height
+                orientation: "horizontal"
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    border: 20, 20, 20, 25
+                    text: "Drawing"
+                    on_press: root.one()
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    text: "Fun"
+                    on_press: root.two()
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    text: "Gray"
+                    on_press: root.three()
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    text: "Coming soon"
+
+                Button:
+                    background_color: 1, 1, 1, 1
+                    text: "Coming soon"
+
+
+<EditScreen>:
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.2
+            padding: 0, 10
+            spacing: 30, 10
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Cancel"
+                on_press: root.cancel()
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Reset"
+                on_press: root.reset()
+
+            Button:
+                background_color: 0.7, 0.7, 1.7, 1
+                text: "Continue"
+                on_press: root.continu()
+
+        RelativeLayout:
+            size_hint: 1, 1
+
+        GridLayout:
+            cols: 1
+            size_hint: 1, 0.2
+
+            GridLayout:
+                cols: 2
+                Button:
+                    text: "Mirror"
+                    on_press: root.mirror()
+
+                Button:
+                    text: "Flip"
+                    on_press: root.reverse()
+
+
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            spacing: 20, 20
+            padding: 15, 15
+            Label:
+                font_size: "20sp"
+                text: "User Login"
+            TextInput:
+                id: user
+                hint_text: "Username"
+            TextInput:
+                id: key
+                password: True
+                hint_text: "Password"
+            RelativeLayout:
+                Button:
+                    text: "Log In"
+                    on_press: root.log_in(root.ids.user.text, root.ids.key.text)
+                    size_hint: 0.3, 0.6
+                    pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                    opacity: 1 if self.state == "normal" else 0.5
+            Label:
+                id: wrong
+                text: ""
+                color: 0.7, 0.6, 0.4, 1
+
+        GridLayout:
+            size_hint: 0.2, 0.2
+            cols: 2
+
+            Button:
+                text: "Forgot password?"
+                background_color: 0, 0, 0, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1, 0.7, 1, 1
+            Button:
+                text: "Sign up"
+                on_press: root.sign_up()
+                background_color: 0, 0, 0, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1, 0.7, 1, 1
+
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        RelativeLayout:
+            GridLayout:
+                cols: 1
+                spacing: 20, 20
+                padding: 15, 15
+                size_hint: 1, 0.75
+                pos_hint: {"center_y": 0.6}
+
+                Label:
+                    font_size: "20sp"
+                    text: "User Sign Up"
+                TextInput:
+                    id: user
+                    hint_text: "Username"
+                TextInput:
+                    id: key
+                    hint_text: "Password"
+                    password: True
+                Label:
+                    id: taken
+                    text: ""
+                    color: 0.7, 0.6, 0.4, 1
+        GridLayout:
+            size_hint: 0.2, 0.2
+            cols: 2
+            spacing: 10, 30
+            padding: 10, 10
+
+            Button:
+                text: "Sign Up"
+                on_press: root.add_user(root.ids.user.text, root.ids.key.text)
+                background_color: 1, 0.3, 0.3, 1
+                opacity: 1 if self.state == "normal" else 0.5
+
+            Button:
+                text:"Cancel"
+                on_press: root.cancel()
+                opacity: 1 if self.state == "normal" else 0.5
+                background_color: 1, 0.3, 0.3, 1
+
+<Success>:
+    GridLayout:
+        cols: 1
+
+        RelativeLayout:
+            GridLayout:
+                rows: 2
+                padding: 20, 20
+                spacing: 0, 30
+                size_hint: 0, 0.5
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                Label:
+                    font_size: "40sp"
+                    text: "Sign up was..."
+                Label:
+                    font_size: "40sp"
+                    text: "Successful!!!"
+
+        Image:
+            id: baymax
+            source: "baymax.jpg"
+
+
+        RelativeLayout:
+            Button:
+                size_hint: 1, 0.3
+                text: "Login"
+                on_press: root.log_in()
+                opacity: 1 if self.state == "normal" else 0.5
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+
+
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    Success:
+        name: "success_screen"
+    VideoScreen:
+        name: "video_screen"
+    PhotoScreen:
+        name: "photo_screen"
+    EditScreen:
+        name: "edit_screen"

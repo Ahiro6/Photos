@@ -1,0 +1,160 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 1
+            spacing: 20, 20
+            padding: 15, 15
+            Label:
+                font_size: "20sp"
+                text: "User Login"
+            TextInput:
+                id: user
+                hint_text: "Username"
+            TextInput:
+                id: key
+                password: True
+                hint_text: "Password"
+            RelativeLayout:
+                Button:
+                    text: "Log In"
+                    on_press: root.log_in(root.ids.user.text, root.ids.key.text)
+                    size_hint: 0.3, 0.6
+                    pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                    opacity: 1 if self.state == "normal" else 0.5
+            Label:
+                id: wrong
+                text: ""
+                color: 0.7, 0.6, 0.4, 1
+
+        GridLayout:
+            size_hint: 0.2, 0.2
+            cols: 2
+
+            Button:
+                text: "Forgot password?"
+                background_color: 0, 0, 0, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1, 0.7, 1, 1
+            Button:
+                text: "Sign up"
+                on_press: root.sign_up()
+                background_color: 0, 0, 0, 0
+                opacity: 1 if self.state == "normal" else 0.5
+                color: 0.1, 0.7, 1, 1
+
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        RelativeLayout:
+            GridLayout:
+                cols: 1
+                spacing: 20, 20
+                padding: 15, 15
+                size_hint: 1, 0.75
+                pos_hint: {"center_y": 0.6}
+
+                Label:
+                    font_size: "20sp"
+                    text: "User Sign Up"
+                TextInput:
+                    id: user
+                    hint_text: "Username"
+                TextInput:
+                    id: key
+                    hint_text: "Password"
+                    password: True
+                Label:
+                    id: taken
+                    text: ""
+                    color: 0.7, 0.6, 0.4, 1
+        GridLayout:
+            size_hint: 0.2, 0.2
+            cols: 2
+            spacing: 10, 30
+            padding: 10, 10
+
+            Button:
+                text: "Sign Up"
+                on_press: root.add_user(root.ids.user.text, root.ids.key.text)
+                background_color: 1, 0.3, 0.3, 1
+                opacity: 1 if self.state == "normal" else 0.5
+
+            Button:
+                text:"Cancel"
+                on_press: root.cancel()
+                opacity: 1 if self.state == "normal" else 0.5
+                background_color: 1, 0.3, 0.3, 1
+
+<Success>:
+    GridLayout:
+        cols: 1
+
+        RelativeLayout:
+            GridLayout:
+                rows: 2
+                padding: 20, 20
+                spacing: 0, 30
+                size_hint: 0, 0.5
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                Label:
+                    font_size: "40sp"
+                    text: "Sign up was..."
+                Label:
+                    font_size: "40sp"
+                    text: "Successful!!!"
+
+        Imagee:
+            id: baymax
+            source: "1.jpg"
+
+
+        RelativeLayout:
+            Button:
+                size_hint: 1, 0.3
+                text: "Login"
+                on_press: root.log_in()
+                opacity: 1 if self.state == "normal" else 0.5
+                pos_hint: {"center_x": 0.5, "center_y": 0.3}
+
+<MainScreen>:
+    GridLayout:
+        spacing: 30, 30
+        padding: 30, 30
+        cols: 1
+
+        RelativeLayout:
+            ImageButton:
+                size_hint: 0.40, 0.40
+                pos_hint: {"center_x": 0.9, "center_y": 0.8}
+                source: "logout_hover.png" if self.hovered else "logout_nothover.png"
+                on_press: root.log_out()
+
+        Label:
+            font_size: "20sp"
+            text: "Enter your feelings"
+        TextInput:
+            id: emotion
+            hint_text: "E.g. Sad, Happy, Mad"
+        Button:
+            text: "Talk to me"
+            on_press: root.get_quote(root.ids.emotion.text)
+            opacity: 1 if self.state == "normal" else 0.5
+        ScrollView:
+            Label:
+                text_size: self.width, None
+                size_hint_y: None
+                height: self.texture_size[1]
+                id: tip
+                text: ""
+
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    Success:
+        name: "success_screen"
+    MainScreen:
+        name: "main_screen"
