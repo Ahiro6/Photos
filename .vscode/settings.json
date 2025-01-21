@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./data/ImgTools",
+        "./data/Screens"
+    ],
+    "materialkv.pythonFile": "main.py"
+}

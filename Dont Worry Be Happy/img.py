@@ -114,7 +114,7 @@ class Video:
         video.release()
 
 
-"""new2 = ImgDraw(img2)
+new2 = ImgDraw(img2)
 face_detector = FaceDetection(new2.img_a)
 new2.funny = new2.reSize(new2.funny, 1000, 300)
-new2.save("ol-man")"""
+new2.save("ol-man")

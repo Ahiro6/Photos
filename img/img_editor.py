@@ -200,7 +200,7 @@ class Video:
         self.video.release()
         cv2.destroyAllWindows()
 
-        """ img_ed = ImgDraw("1.jpg")
+        img_ed = ImgDraw("1.jpg")
         
 
         while True:
@@ -230,7 +230,7 @@ class Video:
             elif key == ord("9"):
                 img_ed.reSet()
 
-        cv2.destroyAllWindows()"""
+        cv2.destroyAllWindows()
 
 
 video = Video()
