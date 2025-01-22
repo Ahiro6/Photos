@@ -31,6 +31,15 @@ from Screens.Success import Success
 from Screens.PhotoScreen import PhotoScreen
 from Screens.VideoScreen import VideoScreen
 
+from kivy.config import Config
+Config.set('kivy','window_icon','Assets/icon.jpg')
+# Config.set('graphics', 'width', '200')
+# Config.set('graphics', 'height', '800')
+
+from kivy.core.window import Window
+Window.size = (350, 700)
+Window.clearcolor = (0.03, 0.03, 0.15, 0.8)
+
 # Builder.load_file("main.kv")
                               
 
@@ -41,6 +50,7 @@ class RootWidget(ScreenManager):
 class MainApp(App):
 
     def build(self):
+        self.icon = './Assets/icon.jpg'
         root = RootWidget()
         root.current = "login_screen"
         print("Current screen:", root.current)  # Debug print

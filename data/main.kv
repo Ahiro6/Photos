@@ -6,19 +6,21 @@
 
         RelativeLayout:
             size_hint: 0.2, 0.2
-            pos_hint: {"center_x": 0.2, "center_y": 0.6}
+            pos_hint: {"center_x": 0.0, "center_y": 0.6}
             ImageButton:
+                padding: 100, 100
                 size_hint: 0.7, 0.7
-                pos_hint: {"center_x": 0.2, "center_y": 0.6}
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
                 source: "./Assets/logout_hover.png" if self.hovered else "./Assets/logout_nothover.png"
                 on_press: root.log_out()
 
         BoxLayout:
+            id: holder  
             size_hint: 1, 1
-            Camera:
+
+            Image:
                 id: cam
-                resolution: (640, 480)
-                play: True
+
 
         RelativeLayout:
             size_hint: 1, 0.25
@@ -37,35 +39,31 @@
                 orientation: "horizontal"
 
                 padding: 5, 5
-                size_hint_x: None
+                size_hint_x: 1
 
                 Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
+                    text: 'None'
+                    background_color: 0, 0, 0, 1
+                    color: 0.1, 0.7, 1, 1
+                    size_hint_x: 0.25
+                    on_press: root.none_filter()
+                    opacity: 1 if self.state == "normal" else 0.5
                 Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
-                Button:
-                    background_color: 1, 1, 1, 1
-                    size_hint_x: None
+                    background_color: 0.7, 1.7, 0.7, 1
+                    size_hint_x: 0.25
+                    on_press: root.rect_filter()
+                    opacity: 1 if self.state == "normal" else 0.5
+                ImageButton:
+                    source: "./Assets/Batman.png"
+                    size_hint_x: 0.25
+                    on_press: root.bat_filter()
+                    opacity: 1 if self.state == "normal" else 0.5
+                ImageButton:
+                    source: "./Assets/Flash.png"
+                    size_hint_x: 0.25
+                    on_press: root.flash_filter()
+                    opacity: 1 if self.state == "normal" else 0.5
+
 <PhotoScreen>:
     GridLayout:
         cols: 1
@@ -73,20 +71,22 @@
             cols: 3
             size_hint: 1, 0.2
             padding: 0, 10
-            spacing: 30, 10
 
             Button:
-                background_color: 0.7, 0.7, 1.7, 1
+                size_hint_x: 0.33
+                background_color: 0.7, 1.7, 0.7, 1
                 text: "Cancel"
                 on_press: root.cancel()
 
             Button:
-                background_color: 0.7, 0.7, 1.7, 1
+                size_hint_x: 0.33
+                background_color: 0.7, 1.7, 0.7, 1
                 text: "Reset"
                 on_press: root.reset()
 
             Button:
-                background_color: 0.7, 0.7, 1.7, 1
+                size_hint_x: 0.33
+                background_color: 0.7, 1.7, 0.7, 1
                 text: "Continue"
                 on_press: root.save()
 
@@ -159,13 +159,8 @@
 
         GridLayout:
             size_hint: 0.2, 0.2
-            cols: 2
+            cols: 1
 
-            Button:
-                text: "Forgot password?"
-                background_color: 0, 0, 0, 0
-                opacity: 1 if self.state == "normal" else 0.5
-                color: 0.1, 0.7, 1, 1
             Button:
                 text: "Sign up"
                 on_press: root.sign_up()
@@ -241,6 +236,8 @@
                 on_press: root.log_in()
                 opacity: 1 if self.state == "normal" else 0.5
                 pos_hint: {"center_x": 0.5, "center_y": 0.3}
+                background_color: 1, 0.3, 0.3, 1
+
 <RootWidget>:
     LoginScreen:
         name: "login_screen"

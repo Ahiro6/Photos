@@ -16,10 +16,9 @@ from ImgTools.MovementDetection import MovementDetection
 
 class Video:
     def __init__(self, dir='IMGS'):
-        self.url = ""
+        self.frame = None
         self.video = cv2.VideoCapture(0)
-        self.detect = True
-        check, self.frame = self.video.read()
+        self.detect = False
         self.mask = None
         
         self.img_name = None
@@ -28,18 +27,23 @@ class Video:
         self.face = FaceDetection()
         self.move = MovementDetection()
 
-    def check_face(self):
+    def read_frame(self):
         check, self.frame = self.video.read()
-        
+        self.detect_face()
+    
+    def detect_face(self):
         if self.detect:
             self.face.detect_face(self.frame, self.mask)
+            
+    def release(self):
+        self.video.release()
 
     def run(self, name, save_data=False):
         running = True
         
         while running:
 
-            self.check_face()
+            self.read_frame()
 
             key = cv2.waitKey(1)
             cv2.imshow(name, self.frame)
@@ -67,7 +71,7 @@ class Video:
             self.move.save()
             self.face.save()
 
-        self.video.release()
+        self.release()
         cv2.destroyAllWindows()
         
     def no_mask(self):
@@ -88,6 +92,7 @@ class Video:
             
 
     def save_img(self):
+        self.detect_face()
         timestr = time.strftime("%Y%m%d_%H%M%S")
         self.img_name = f"IMG_{timestr}.png"
         cv2.imwrite(f'./{self.dir}/{self.img_name}', self.frame)

@@ -17,7 +17,7 @@ class PhotoScreen(Screen):
         
     def on_pre_enter(self, *args):
         self.img_name = self.manager.get_screen('video_screen').img_name        
-        self.dir = "IMGS"
+        self.dir = self.manager.get_screen('video_screen').dir
         
         self.edit = ImgDraw(self.img_name, dir=self.dir)
 
@@ -69,3 +69,4 @@ class PhotoScreen(Screen):
         self.edit.mirror()
         self.edit.save()        
         self.img.reload()
+        
